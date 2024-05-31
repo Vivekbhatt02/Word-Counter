@@ -1,0 +1,105 @@
+This HTML document creates a simple web-based word and character counter. Here's a detailed breakdown of each part of the code:
+
+### HTML Structure
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Counter</title>
+    <style>
+        body{
+            padding: 0px 100px;
+        }
+        h1{
+            text-align: center;
+            background-color: #0067b0;
+            color: white;
+            padding: 10px;
+            margin: 0px;
+        }
+        #textbox{
+            width: 99.3%;
+            border-color: #0067b0;
+            font-size: 15px;
+        }
+        p{
+            text-align : center;
+            background-color: #0067b0;
+            font-size: 25px;
+            font-weight: bold;
+            color: white;
+            padding: 10px;
+            margin: 0px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Word and Character Counter</h1>
+    <textarea name="" id="textbox" cols="30" rows="10"></textarea>
+    <p>
+        <span id="word">0</span> words and 
+        <span id="char">0</span> characters
+    </p>
+
+    <script>
+        let textbox = document.getElementById("textbox");
+        textbox.addEventListener('input', function(){
+            var text = this.value; // stored as a string
+            let char = text.length;
+            document.getElementById("char").innerHTML = char;
+
+            // Now trim all spaces from both ends
+            text = text.trim();
+            let words = text.split(' '); // now words is an array
+            let cleanList = words.filter(function(elm){
+                if(elm != "")
+                    return elm;
+            })
+
+            document.getElementById("word").innerHTML = cleanList.length;
+        })
+    </script>
+</body>
+</html>
+```
+
+### Breakdown
+
+#### Head Section
+
+- **DOCTYPE and HTML Language Declaration**: Specifies the document type and the language used.
+- **Meta Tags**: 
+  - `charset="UTF-8"` sets the character encoding.
+  - `http-equiv="X-UA-Compatible" content="IE=edge"` ensures compatibility with IE.
+  - `name="viewport"` sets the viewport to make the page responsive.
+- **Title**: Sets the title of the webpage to "Word Counter".
+- **Style Section**: Contains CSS for styling the page.
+  - `body`: Adds padding to the left and right.
+  - `h1`: Styles the main heading with center alignment, background color, text color, padding, and no margin.
+  - `#textbox`: Styles the textarea with width, border color, and font size.
+  - `p`: Styles the paragraph with center alignment, background color, font size, font weight, text color, padding, and no margin.
+
+#### Body Section
+
+- **Header (`h1`)**: Displays the title "Word and Character Counter".
+- **Textarea (`textarea#textbox`)**: An input area where users can type text.
+- **Paragraph (`p`)**: Displays the word and character counts.
+  - **Span Elements (`span#word` and `span#char`)**: These display the actual counts for words and characters, respectively.
+
+#### Script Section
+
+- **JavaScript**: Adds interactivity to the webpage.
+  - **Event Listener**: Listens for `input` events on the `textarea`.
+  - **Text Processing**:
+    - Gets the text value from the `textarea`.
+    - Counts the characters using `text.length` and updates the `char` span.
+    - Trims whitespace from the text ends.
+    - Splits the text into words using `text.split(' ')`.
+    - Filters out empty strings from the array to count actual words.
+    - Updates the `word` span with the word count.
+
+This code combines HTML for structure, CSS for styling, and JavaScript for functionality to create a simple word and character counter application.
